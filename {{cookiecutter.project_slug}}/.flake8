@@ -1,0 +1,13 @@
+[flake8]
+application-import-names = {{ cookiecutter.project_slug }}
+import-order-style = smarkets
+inline-quotes = double
+max-complexity = 15
+multiline-quotes = double
+ignore=
+    P101, # format string does contain unindexed parameters
+    D100, # Missing doctrings in a public module (handled by interrogate)
+    D104, # Missing docstring in public package (handled by interrogate)
+    D107, D103, # Missing docstring in ... (conflicts with interrogate)
+    D202, # No blank lines allowed after function docstring (conflicts with black)
+    D401, # First line should be in imperative mood; try rephrasing

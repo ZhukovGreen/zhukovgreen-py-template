@@ -1,0 +1,96 @@
+[tool.black]
+line-length={{ cookiecutter.line_length }}
+target-version=["py38"]
+
+[tool.isort]
+atomic=true
+line_length = {{ cookiecutter.line_length }}
+lines_after_imports=2
+lines_between_types=1
+use_parentheses = true
+balanced_wrapping = true
+include_trailing_comma = true
+multi_line_output = 3
+known_third_party=[
+    "pytest",
+    "loguru",
+]
+known_first_party=[
+    "{{ cookiecutter.project_slug }}",
+]
+
+[tool.coverage.run]
+branch = false
+source = ["{{ cookiecutter.project_slug }}"]
+omit = [
+    "{{ cookiecutter.project_slug }}/setup_logger.py",
+
+]
+
+[tool.coverage.paths]
+source = ["{{ cookiecutter.project_slug }}/"]
+
+[tool.coverage.report]
+fail_under = 100
+skip_covered = true
+show_missing = true
+
+[tool.pytest.ini_options]
+minversion = "6.0.0"
+addopts = "-vv -s --tb=native"
+testpaths = "tests/"
+log_cli = true
+log_cli_level = "DEBUG"
+log_cli_format = "| %(asctime)s | %(name)s | %(levelname)s | %(filename)s | %(message)s"
+
+[tool.interrogate]
+ignore-init-method = true
+ignore-init-module = true
+ignore-magic = false
+ignore-semiprivate = false
+ignore-private = false
+ignore-property-decorators = false
+ignore-module = true
+fail-under = 100
+exclude = ["setup.py", "docs", "build",]
+ignore-regex = ["^get$", "^mock_.*", ".*BaseClass.*", "^get.*$", "^factory$"]
+verbose = 2
+quiet = false
+whitelist-regex = []
+color = true
+
+[tool.poetry]
+name = "{{ cookiecutter.project_slug }}"
+version = "{{ cookiecutter.version }}"
+description = "{{ cookiecutter.project_short_description }}"
+authors = ["{{ cookiecutter.full_name }} ({{ cookiecutter.nickname }}) <{{ cookiecutter.email }}>"]
+maintainers = [
+    "{{ cookiecutter.full_name }} ({{ cookiecutter.nickname }}) <{{ cookiecutter.email }}>",
+]
+readme = "README.md"
+repository = "{{ cookiecutter.repository_url }}"
+packages = [
+    {include = "{{ cookiecutter.project_slug }}"},
+]
+
+[tool.poetry.dependencies]
+python = "^{{ cookiecutter.py_version }}"
+envparse = "^0.2.0"
+loguru = "^0.5.3"
+click = "^7.1.2"
+
+[tool.poetry.dev-dependencies]
+coverage = {extras = ["toml"], version = "^5.2.1"}
+pytest = "^6.0.1"
+pytest-cov = "^2.10.1"
+pytest-asyncio = "^0.14.0"
+pdbpp = "^0.10.2"
+pytest-mock = "^3.3.1"
+
+[tool.poetry.scripts]
+{{ cookiecutter.project_slug }} = "{{ cookiecutter.project_slug }}.main:cli"
+
+
+[build-system]
+requires = ["poetry>=1.0.0"]
+build-backend = "poetry.masonry.api"

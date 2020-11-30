@@ -1,0 +1,12 @@
+{
+    "full_name": "Artem Zhukov",
+    "nickname": "zhukovgreen",
+    "email": "iam@zhukovgreen.pro",
+    "project_name": "Python Boilerplate",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+    "project_short_description": "",
+    "version": "0.1.0",
+    "line_length": "79",
+    "repository_url": "enter your repo url",
+    "py_version": "3.9"
+}
