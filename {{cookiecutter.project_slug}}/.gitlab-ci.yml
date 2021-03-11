@@ -11,6 +11,9 @@ lint:
   stage: lint
   script:
     - make lint
+  rules:
+    - if: $CI_COMMIT_MESSAGE =~ /\[skip-lint\]/
+      allow_failure: true
 
 test:
   stage: test
