@@ -47,5 +47,5 @@ def setup_logger(log_to_file: bool = False, debug: bool = False) -> None:
             }
         )
     logger.configure(handlers=handlers)
-    logger.info("Logger configured successfully.")
+    logger.debug("Logger configured successfully.")
     logger.debug(f"DEBUG is {debug}")
