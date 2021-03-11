@@ -1,4 +1,4 @@
-image: playpauseandstop/docker-python:4.0.0-py39
+image: playpauseandstop/docker-python:4.1.0-py39
 
 stages:
   - lint
